@@ -4,120 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorSecondary"
     tools:context=".Views.MainActivity">
 
+    <include layout="@layout/activity_base" />
+
     <TextView
-        android:id="@+id/txtQuestionText"
-        android:layout_width="match_parent"
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="QUESTION"
+        android:layout_gravity="center"
+        android:fontFamily="@font/archivo_black"
+        android:padding="13dp"
+        android:text="@string/app_name"
+        android:textColor="@color/colorSecondary"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@id/llConten"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivSettings"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:contentDescription="@string/todo"
+        android:padding="5dp"
+        android:src="@drawable/ic_settings_black_72dp"
+        android:tint="@color/colorAccent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivLanguages"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:contentDescription="@string/todo"
+        android:padding="10dp"
+        android:src="@drawable/ic_en"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtQuestionValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:text="VALUES"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtQuestionText" />
-
-    <ImageView
-        android:id="@+id/IVPrev"
+    <LinearLayout
+        android:id="@+id/llConten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ico_left"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtQuestionValue" />
-
-    <ImageView
-        android:id="@+id/IVNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ico_right"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtQuestionValue" />
-
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NEXT QUESTION"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/IVNext" />
-
-    <EditText
-        android:id="@+id/edtxtDictionary"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:hint="Dictionary"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/txtDictionary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dictionary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtxtDictionary"
-        app:layout_constraintVertical_bias="0" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvStart"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorInfo"
+            app:cardCornerRadius="12dp">
 
-    <Button
-        android:id="@+id/btnDictionary"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Dictionary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtxtDictionary"
-        app:layout_constraintVertical_bias="0.1" />
+            <TextView
+                android:id="@+id/tvStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
+                android:padding="13dp"
+                android:text="@string/start_app"
+                android:textColor="@color/colorSecondary" />
+        </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/edtxtTranslate"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:hint="Translate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvStatistics"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:cardBackgroundColor="@color/colorInfo"
+            app:cardCornerRadius="12dp">
 
-    <TextView
-        android:id="@+id/txtTranslate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Translate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtxtTranslate"
-        app:layout_constraintVertical_bias="0" />
+            <TextView
+                android:id="@+id/tvStatistics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
+                android:padding="13dp"
+                android:text="@string/statistics"
+                android:textColor="@color/colorSecondary" />
+        </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/btnTranslate"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Translate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtxtTranslate"
-        app:layout_constraintVertical_bias="0.1" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvAbout"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:cardBackgroundColor="@color/colorInfo"
+            app:cardCornerRadius="12dp">
+
+            <TextView
+                android:id="@+id/tvAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
+                android:padding="13dp"
+                android:text="@string/about"
+                android:textColor="@color/colorSecondary" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvExit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:cardBackgroundColor="@color/colorInfo"
+            app:cardCornerRadius="12dp">
+
+            <TextView
+                android:id="@+id/tvExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
+                android:padding="13dp"
+                android:text="@string/exit"
+                android:textColor="@color/colorSecondary" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

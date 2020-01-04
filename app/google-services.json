@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "383942905857",
+    "firebase_url": "https://bayraktar-learn-english.firebaseio.com",
+    "project_id": "bayraktar-learn-english",
+    "storage_bucket": "bayraktar-learn-english.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383942905857:android:cff469c501072bee42f000",
+        "android_client_info": {
+          "package_name": "com.bayraktar.learnenglish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383942905857-a2n2bfjb6pj1lukjdu8ni8clsutdsic2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bayraktar.learnenglish",
+            "certificate_hash": "c07f5089fc12df97e173c9a31f9fae04f3ce0d71"
+          }
+        },
+        {
+          "client_id": "383942905857-b03beivnf4s233t1ra97uo58mcu2d2ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7_5L_VUQ2OxB9_QK3DVFe1-eowDEWnKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383942905857-b03beivnf4s233t1ra97uo58mcu2d2ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

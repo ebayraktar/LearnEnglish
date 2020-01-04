@@ -1,3 +1,51 @@
 <resources>
-    <string name="app_name">LearnEnglish</string>
+    <string name="app_name">Learn English</string>
+
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Learn English</string>
+    <string name="slide_1_desc">Learn english and improve your skills!</string>
+
+    <string name="slide_2_title">Test Your Skills</string>
+    <string name="slide_2_desc">Test your english skills and share your progress!</string>
+
+    <string name="slide_3_title">Be Graduate</string>
+    <string name="slide_3_desc">Finish your courses and get your certificate!</string>
+
+    <string name="slide_4_title">Travel The World</string>
+    <string name="slide_4_desc">Travel the world and make new friends!</string>
+
+    <string name="todo">TODO</string>
+
+    <string name="start_app">START</string>
+    <string name="statistics">STATISTICS</string>
+    <string name="about">ABOUT</string>
+    <string name="exit">EXIT</string>
+
+    <string name="question">QUESTION</string>
+    <string name="correct">CORRECT:</string>
+    <string name="percent">100/100</string>
+    <string name="definition">DEFINITION</string>
+    <string name="translation">TRANSLATION</string>
+    <string name="id">ID</string>
+
+    <string name="pick_your_background">Choose your background</string>
+    <string name="save">SAVE</string>
+    <string name="random">RANDOM</string>
+    <string name="current">CURRENT</string>
+    <string name="change_background">Change Background</string>
+    <string name="show_intro_next_launch">Show intro next launch</string>
+    <string name="back">BACK</string>
+    <string name="version">Version 1.0</string>
+    <string name="visit_out_website">Visit out website</string>
+    <string name="like_us_on_facebook">Like us on Facebook</string>
+    <string name="follow_us_on_twitter">Follow us on Twitter</string>
+    <string name="watch_us_on_youtube">Watch us on Youtube</string>
+    <string name="copyright">Copyright 2019 by LearEnglish</string>
+    <string name="negative">Negative</string>
+    <string name="positive">Positive</string>
+    <string name="message">Message</string>
+    <string name="word">Word</string>
 </resources>

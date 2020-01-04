@@ -1,34 +1,30 @@
 package com.bayraktar.learnenglish.Views;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.provider.Settings.Secure;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.bayraktar.learnenglish.API.APIHelper;
+import com.bayraktar.learnenglish.BaseActivity;
 import com.bayraktar.learnenglish.Interfaces.IAPIDataChanged;
+import com.bayraktar.learnenglish.Manager.PrefManager;
 import com.bayraktar.learnenglish.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class QuestionActivity extends AppCompatActivity implements IAPIDataChanged {
+public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
 
     APIHelper apiHelper;
     List<String> definitionList;
@@ -37,20 +33,26 @@ public class QuestionActivity extends AppCompatActivity implements IAPIDataChang
     int total;
     int currentIndex;
     String correctWord;
-    String ID;
-    SharedPreferences sharedPref;
-
+    PrefManager prefManager;
     RadioGroup rgAnswers;
     RadioButton[] radioButtons;
-    TextView tvDefinition, tvTranslation, tvIndex, tvPoint, tvID;
+    TextView tvDefinition, tvTranslation, tvIndex, tvPoint;
     ImageView ivPrev, ivNext;
-    Button btnContinue;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        HeaderEvents(this);
 
+        prefManager = new PrefManager(this);
         rgAnswers = findViewById(R.id.rgAnswers);
         radioButtons = new RadioButton[]{
                 findViewById(R.id.rbA),
@@ -63,23 +65,18 @@ public class QuestionActivity extends AppCompatActivity implements IAPIDataChang
         tvTranslation = findViewById(R.id.tvTranslation);
         tvIndex = findViewById(R.id.tvIndex);
         tvPoint = findViewById(R.id.tvPoint);
-        tvID = findViewById(R.id.tvID);
         ivPrev = findViewById(R.id.ivPrev);
         ivNext = findViewById(R.id.ivNext);
-        btnContinue = findViewById(R.id.btnContinue);
 
-        ID = getID();
-        point = 0;
-        total = 0;
-        sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        getReferences(sharedPref);
+
+        point = prefManager.getPoint();
+        total = prefManager.getTotalPoint();
         currentIndex = 0;
         definitionList = new ArrayList<>();
         translationList = new ArrayList<>();
         apiHelper = new APIHelper(this, this);
 
         tvPoint.setText(point + "/" + total);
-        tvID.setText(ID);
         ivPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +98,7 @@ public class QuestionActivity extends AppCompatActivity implements IAPIDataChang
                 setDefinitions(currentIndex, definitionList.size());
             }
         });
-        btnContinue.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.cvNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int rbID = rgAnswers.getCheckedRadioButtonId();
@@ -119,41 +116,21 @@ public class QuestionActivity extends AppCompatActivity implements IAPIDataChang
 
             }
         });
-//        for (int i = 0; i < 50; i++) {
-//            Random r = new Random();
-//            int a = r.nextInt(5);
-//            Log.d("TAG", "onWordsChanged: Random " + a);
-//        }
     }
 
-    private void getReferences(SharedPreferences sharedPref) {
-        point = sharedPref.getInt("_POINT", 0);
-        total = sharedPref.getInt("_TOTAL", 0);
-    }
 
-    private void setReferences(SharedPreferences sharedPref) {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("_POINT", point);
-        editor.putInt("_TOTAL", total);
-        editor.commit();
-    }
-
-    @SuppressLint("HardwareIds")
-    private String getID() {
-        return Secure.getString(this.getContentResolver(),
-                Secure.ANDROID_ID);
-    }
-
+    @SuppressLint("SetTextI18n")
     private void nextQuestion() {
         currentIndex = 0;
         tvTranslation.setText(null);
         tvDefinition.setText(null);
         tvIndex.setText("0/0");
-        setReferences(sharedPref);
+        prefManager.setTotalPoint(total);
+        prefManager.setPoint(point);
         rgAnswers.clearCheck();
         setWords(new String[5]);
 
-        tvPoint.setText(new StringBuilder().append(point).append("/").append(total).toString());
+        tvPoint.setText(point + "/" + total);
         apiHelper.nextQuestion();
     }
 
@@ -162,8 +139,8 @@ public class QuestionActivity extends AppCompatActivity implements IAPIDataChang
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(wrongWord + " is wrong")
                 .setMessage(wrongWord + " \n"
-                        + "DOĞRUSU: " + correctWord)
-                .setNegativeButton("TAMAM", new DialogInterface.OnClickListener() {
+                        + "The correct answer is " + correctWord)
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         nextQuestion();
@@ -182,6 +159,7 @@ public class QuestionActivity extends AppCompatActivity implements IAPIDataChang
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void setDefinitions(int index, int totalIndex) {
         if (definitionList == null || definitionList.size() == 0) {
             Log.d("TAG", "ERROR SET DEFINITON");
@@ -194,6 +172,7 @@ public class QuestionActivity extends AppCompatActivity implements IAPIDataChang
         setTranslations(index);
     }
 
+    @SuppressLint("SetTextI18n")
     private void setDefinitions(String definition, int index, int totalIndex) {
         if (definitionList == null || definitionList.size() == 0) {
             Log.d("TAG", "ERROR SET DEFINITON");

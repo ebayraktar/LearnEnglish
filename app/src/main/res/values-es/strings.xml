@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Aprende inglés</string>
+
+
+    <string name="next">SIGUIENTE</string>
+    <string name="skip">OMITIR</string>
+    <string name="start">ENTENDIDO</string>
+
+    <string name="slide_1_title">Aprende inglés</string>
+    <string name="slide_1_desc">Aprende inglés y mejora tus habilidades!</string>
+
+    <string name="slide_2_title">Pon A Prueba Tus Habilidades</string>
+    <string name="slide_2_desc">Pon a prueba tus habilidades en inglés y comparte tu progreso!</string>
+
+    <string name="slide_3_title">Ser Graduado</string>
+    <string name="slide_3_desc">Termina tus cursos y obtén tu certificado!</string>
+
+    <string name="slide_4_title">Viajar El Mundo</string>
+    <string name="slide_4_desc">Viaja por el mundo y haz nuevos amigos!</string>
+
+    <string name="todo">TODO</string>
+
+    <string name="start_app">COMIENZO</string>
+    <string name="statistics">ESTADÍSTICAS</string>
+    <string name="about">ACERCA DE</string>
+    <string name="exit">SALIDA</string>
+
+    <string name="question">PREGUNTA</string>
+    <string name="correct">CORRECTA:</string>
+    <string name="percent">100/100</string>
+    <string name="definition">DEFINICIÓN</string>
+    <string name="translation">TRADUCCIÓN</string>
+    <string name="id">ID</string>
+
+    <string name="pick_your_background">Elige tu fondo</string>
+    <string name="save">SALVAR</string>
+    <string name="random">AZAR</string>
+    <string name="current">ACTUAL</string>
+    <string name="change_background">Cambiar el fondo</string>
+    <string name="show_intro_next_launch">Mostrar introducción el próximo lanzamiento</string>
+    <string name="back">ESPALDA</string>
+    <string name="version">Versión 1.0</string>
+    <string name="visit_out_website">Visite nuestro sitio web</string>
+    <string name="like_us_on_facebook">Danos like en facebook</string>
+    <string name="follow_us_on_twitter">Follow us on Twitter</string>
+    <string name="watch_us_on_youtube">Síguenos en Twitter</string>
+    <string name="copyright">Derechos de autor 2019 by LearEnglish</string>
+</resources>

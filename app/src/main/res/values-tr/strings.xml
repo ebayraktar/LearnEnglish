@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">İngilizce Öğren</string>
+
+
+    <string name="next">DEVAM</string>
+    <string name="skip">ATLA</string>
+    <string name="start">ANLADIM</string>
+
+    <string name="slide_1_title">İngilizce Öğren</string>
+    <string name="slide_1_desc">İngilizce öğren ve becerilerini geliştir!</string>
+
+    <string name="slide_2_title">Yeteneklerini Test Et</string>
+    <string name="slide_2_desc">İngilizce becerilerinizi test edin ve ilerlemenizi paylaşın!</string>
+
+    <string name="slide_3_title">Mezun Ol</string>
+    <string name="slide_3_desc">Kurslarını tamamla ve sertifikanı kap!</string>
+
+    <string name="slide_4_title">Dünyayı Dolaş</string>
+    <string name="slide_4_desc">Dünyayı dolaş ve yeni arkadaşlar edin!</string>
+
+    <string name="todo">TODO</string>
+
+    <string name="start_app">BAŞLAT</string>
+    <string name="statistics">İSTATİSTİKLER</string>
+    <string name="about">HAKKINDA</string>
+    <string name="exit">ÇIKIŞ</string>
+
+    <string name="question">SORU</string>
+    <string name="correct">DOĞRU:</string>
+    <string name="percent">100/100</string>
+    <string name="definition">TANIM</string>
+    <string name="translation">ÇEVİRİ</string>
+    <string name="id">ID</string>
+
+    <string name="pick_your_background">Arka planınızı seçin</string>
+    <string name="save">KAYDET</string>
+    <string name="random">RASTGELE</string>
+    <string name="current">GEÇERLİ</string>
+    <string name="change_background">Arka planı değiştir</string>
+    <string name="show_intro_next_launch">Sonraki başlangıçta introyu göster</string>
+    <string name="back">GERİ</string>
+    <string name="version">Sürüm 1.0</string>
+    <string name="visit_out_website">Websitemizi Ziyaret Et</string>
+    <string name="like_us_on_facebook">Bizi Beğen</string>
+    <string name="follow_us_on_twitter">Bizi Takip Et</string>
+    <string name="watch_us_on_youtube">Bizi İzle</string>
+    <string name="copyright">Tüm Hakları Saklıdır 2019</string>
+</resources>
