@@ -7,38 +7,130 @@
 
     <include layout="@layout/activity_base" />
 
-    <TextView
-        android:id="@+id/tvWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/tilWord"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:fontFamily="@font/archivo_black"
-        android:padding="13dp"
-        android:text="@string/word"
-        android:textColor="@color/colorSecondary" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilWord"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="250dp"
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusTopEnd="@dimen/fab_margin"
-        app:boxCornerRadiusTopStart="@dimen/fab_margin">
+        android:stretchColumns="1">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietWord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/archivo_black"
-            android:gravity="center"
-            android:padding="13dp"
-            android:text="@string/word"
-            android:textColor="@color/colorSecondary" />
-    </com.google.android.material.textfield.TextInputLayout>
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvPartOfSpeech"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
+                android:padding="13dp"
+                android:text="@string/part_of_speech"
+                android:textColor="@color/colorSecondary" />
+
+            <Spinner
+                android:id="@+id/spnrPartOfSpeech"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_margin="@dimen/fab_margin" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvEnWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:fontFamily="@font/archivo_black"
+                android:padding="13dp"
+                android:text="@string/english_word"
+                android:textColor="@color/colorSecondary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEnWord"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopEnd="@dimen/fab_margin"
+                app:boxCornerRadiusTopStart="@dimen/fab_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietEnWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/archivo_black"
+                    android:gravity="center"
+                    android:padding="13dp"
+                    android:textColor="@color/colorSecondary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvTrWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:fontFamily="@font/archivo_black"
+                android:padding="13dp"
+                android:text="@string/turkish_word"
+                android:textColor="@color/colorSecondary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTrWord"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopEnd="@dimen/fab_margin"
+                app:boxCornerRadiusTopStart="@dimen/fab_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietTrWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/archivo_black"
+                    android:gravity="center"
+                    android:padding="13dp"
+                    android:textColor="@color/colorSecondary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvSpWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:fontFamily="@font/archivo_black"
+                android:padding="13dp"
+                android:text="@string/spanish_word"
+                android:textColor="@color/colorSecondary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSpWord"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopEnd="@dimen/fab_margin"
+                app:boxCornerRadiusTopStart="@dimen/fab_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietSpWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/archivo_black"
+                    android:gravity="center"
+                    android:padding="13dp"
+                    android:textColor="@color/colorSecondary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </TableRow>
+    </TableLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvNext"
@@ -57,7 +149,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/archivo_black"
             android:padding="13dp"
-            android:text="@string/next"
+            android:text="@string/save"
             android:textColor="@color/colorSecondary" />
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

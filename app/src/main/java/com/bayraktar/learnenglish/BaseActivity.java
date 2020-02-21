@@ -3,7 +3,6 @@ package com.bayraktar.learnenglish;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.bayraktar.learnenglish.Models.Message;
 
@@ -42,7 +40,7 @@ public class BaseActivity extends AppCompatActivity {
             return;
         }
         LayoutInflater inflater = getLayoutInflater();
-        View customView = inflater.inflate(R.layout.view_custom, null);
+        @SuppressLint("InflateParams") View customView = inflater.inflate(R.layout.view_custom, null);
 
         TextView tvMessage = customView.findViewById(R.id.tvMessage);
         TextView tvPositive = customView.findViewById(R.id.tvPositive);

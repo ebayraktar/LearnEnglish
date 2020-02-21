@@ -3,6 +3,7 @@ package com.bayraktar.learnenglish.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
@@ -23,8 +24,10 @@ public class ChangeBGActivity extends BaseActivity implements ViewPager.OnPageCh
 
     @Override
     public void onBackPressed() {
-        Constants.BACKGROUND_POSITION = defaultBG;
-        Constants.BACKGROUND_DRAWABLE = Constants.backgroundPositions[defaultBG];
+        if (defaultBG != -1) {
+            Constants.BACKGROUND_POSITION = defaultBG;
+            Constants.BACKGROUND_DRAWABLE = Constants.backgroundPositions[defaultBG];
+        }
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }

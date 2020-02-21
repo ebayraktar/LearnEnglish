@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.bayraktar.learnenglish.Clients.OxfordClient;
 import com.bayraktar.learnenglish.Clients.RandomWordsClient;
 import com.bayraktar.learnenglish.Clients.YandexClient;
@@ -31,14 +33,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class APIHelper implements IAPIDataChanged {
-    private final String YANDEX_API_KEY = "trnsl.1.1.20191123T191655Z.c4e490008f275f7b.1e4729b73e064c7b91ff8beaabd17e713d0dfb73";
     private String RANDOMWORDS_KEY;
-    private String[] RANDOM_WORDS;
     private Activity activity;
     private IAPIDataChanged dataChanged;
-
-    IOxford oxford;
-    IYandex yandex;
 
     public APIHelper(Activity activity, IAPIDataChanged dataChanged) {
         this.activity = activity;
@@ -65,11 +62,11 @@ public class APIHelper implements IAPIDataChanged {
         _dialog.setTitle("Sözlüğe bağlanılıyor...");
         _dialog.show();
 
-        oxford = OxfordClient.getClient().create(IOxford.class);
+        IOxford oxford = OxfordClient.getClient().create(IOxford.class);
         Call<OxfordModel> callOxford = oxford.getOxford(text);
         callOxford.enqueue(new Callback<OxfordModel>() {
             @Override
-            public void onResponse(Call<OxfordModel> call, Response<OxfordModel> response) {
+            public void onResponse(@NonNull Call<OxfordModel> call, @NonNull Response<OxfordModel> response) {
                 if (response.isSuccessful()) {
                     OxfordModel oxfordModel = response.body();
                     if (oxfordModel == null || oxfordModel.results == null) {
@@ -83,9 +80,7 @@ public class APIHelper implements IAPIDataChanged {
                             for (LexicalEntry lexicalEntry : result.lexicalEntries) {
                                 for (Entry entry : lexicalEntry.entries) {
                                     for (Sense sense : entry.senses) {
-                                        for (String definition : sense.definitions) {
-                                            definitionList.add(definition);
-                                        }
+                                        definitionList.addAll(sense.definitions);
                                     }
                                 }
                             }
@@ -102,14 +97,14 @@ public class APIHelper implements IAPIDataChanged {
                 } else {
                     dataChanged.onErrorOccurred("Dictionary request failed");
                 }
-                if (_dialog != null && _dialog.isShowing()) {
+                if (_dialog.isShowing()) {
                     _dialog.dismiss();
                 }
             }
 
             @Override
-            public void onFailure(Call<OxfordModel> call, Throwable t) {
-                if (_dialog != null && _dialog.isShowing())
+            public void onFailure(@NonNull Call<OxfordModel> call, @NonNull Throwable t) {
+                if (_dialog.isShowing())
                     _dialog.dismiss();
                 dataChanged.onErrorOccurred("DICTIONARY: " + t.getMessage());
             }
@@ -121,42 +116,40 @@ public class APIHelper implements IAPIDataChanged {
         dialog.setTitle("Yandex.Translate bağlanılıyor...");
         dialog.show();
 
-        yandex = YandexClient.getClient().create(IYandex.class);
+        IYandex yandex = YandexClient.getClient().create(IYandex.class);
+        String YANDEX_API_KEY = "trnsl.1.1.20191123T191655Z.c4e490008f275f7b.1e4729b73e064c7b91ff8beaabd17e713d0dfb73";
         Call<YandexModel> callYandex = yandex.getYandex(YANDEX_API_KEY, text, "en-tr");
         callYandex.enqueue(new Callback<YandexModel>() {
             @Override
-            public void onResponse(Call<YandexModel> call, Response<YandexModel> response) {
+            public void onResponse(@NonNull Call<YandexModel> call, @NonNull Response<YandexModel> response) {
                 if (response.isSuccessful()) {
                     YandexModel yandexModel = response.body();
                     if (yandexModel == null || yandexModel.text == null) {
                         dataChanged.onErrorOccurred("Response null");
                         return;
                     }
-                    List<String> translationList = new ArrayList<>();
-                    for (String text : yandexModel.text) {
-                        translationList.add(text);
-                    }
+                    List<String> translationList = new ArrayList<>(yandexModel.text);
                     dataChanged.onTranslationChanged(translationList);
 
                 } else {
-                    dataChanged.onErrorOccurred("Transation request failed");
+                    dataChanged.onErrorOccurred("Translation request failed");
                 }
-                if (dialog != null && dialog.isShowing())
+                if (dialog.isShowing())
                     dialog.dismiss();
             }
 
             @Override
-            public void onFailure(Call<YandexModel> call, Throwable t) {
-                if (dialog != null && dialog.isShowing())
+            public void onFailure(@NonNull Call<YandexModel> call, @NonNull Throwable t) {
+                if (dialog.isShowing())
                     dialog.dismiss();
-                dataChanged.onErrorOccurred("TRANSALTE: " + t.getMessage());
+                dataChanged.onErrorOccurred("TRANSLATE: " + t.getMessage());
             }
         });
     }
 
-    private String[] getRandomWordsExecute(String api_key, int number_of_words) throws IOException {
+    private String[] getRandomWordsExecute(String api_key) throws IOException {
         IRandomWords randomWordsService = RandomWordsClient.getInstance().getRandomWordsService();
-        Call<String[]> randomWordArray = randomWordsService.getRandomWords(api_key, number_of_words);
+        Call<String[]> randomWordArray = randomWordsService.getRandomWords(api_key, 5);
         Response<String[]> response = randomWordArray.execute();
         return response.body();
     }
@@ -229,7 +222,7 @@ public class APIHelper implements IAPIDataChanged {
             }
 
             dialog = new ProgressDialog(helper.activity);
-            dialog.setTitle("Lütfen bekleyin");
+            dialog.setTitle("Please wait");
             dialog.show();
         }
 
@@ -260,7 +253,7 @@ public class APIHelper implements IAPIDataChanged {
             if (dialog != null && dialog.isShowing())
                 dialog.dismiss();
             if (TextUtils.isEmpty(result)) {
-                helper.dataChanged.onErrorOccurred("Key alınamadı!");
+                helper.dataChanged.onErrorOccurred("Key error!");
                 return;
             }
 
@@ -289,7 +282,7 @@ public class APIHelper implements IAPIDataChanged {
             }
 
             dialog = new ProgressDialog(helper.activity);
-            dialog.setTitle("Lütfen bekleyin");
+            dialog.setTitle("Please wait");
             dialog.show();
         }
 
@@ -300,7 +293,7 @@ public class APIHelper implements IAPIDataChanged {
                 return null;
             }
             try {
-                return helper.getRandomWordsExecute(strings[0], 5);
+                return helper.getRandomWordsExecute(strings[0]);
             } catch (IOException e) {
                 helper.dataChanged.onErrorOccurred("WORDS CATCH " + e.getMessage());
                 return null;
@@ -323,7 +316,6 @@ public class APIHelper implements IAPIDataChanged {
                 return;
             }
 
-            helper.RANDOM_WORDS = words;
             helper.onWordsChanged(words);
             helper.dataChanged.onWordsChanged(words);
         }

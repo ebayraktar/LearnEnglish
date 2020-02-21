@@ -48,4 +48,8 @@
     <string name="positive">Positive</string>
     <string name="message">Message</string>
     <string name="word">Word</string>
+    <string name="part_of_speech">Part Of Speech</string>
+    <string name="english_word">English Word</string>
+    <string name="turkish_word">Turkish Word</string>
+    <string name="spanish_word">Spanish Word</string>
 </resources>

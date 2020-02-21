@@ -2,6 +2,8 @@ package com.bayraktar.learnenglish.Interfaces;
 
 import com.bayraktar.learnenglish.Models.Yandex.YandexModel;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -13,4 +15,8 @@ public interface IYandex {
     Call<YandexModel> getYandex(@Field("key") String key,
                                 @Field("text") String[] text,
                                 @Field("lang") String lang);
+
+    void onTranslatedValue(List<String> value);
+
+    void onErrorOccurred(String value);
 }

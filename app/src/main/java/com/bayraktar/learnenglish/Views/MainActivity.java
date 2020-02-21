@@ -9,11 +9,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.core.content.ContextCompat;
+
 import com.bayraktar.learnenglish.BaseActivity;
 import com.bayraktar.learnenglish.Constants;
 import com.bayraktar.learnenglish.Manager.LocaleManager;
 import com.bayraktar.learnenglish.Manager.PrefManager;
 import com.bayraktar.learnenglish.R;
+import com.bayraktar.learnenglish.Services.MyFirebaseService;
 
 public class MainActivity extends BaseActivity {
     PrefManager prefManager;
@@ -91,6 +94,18 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.cvStart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+        findViewById(R.id.cvStatistics).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent serviceIntent = new Intent(MainActivity.this, MyFirebaseService.class);
+                serviceIntent.putExtra("inputExtra", "input");
+                ContextCompat.startForegroundService(MainActivity.this, serviceIntent);
+
                 startActivity(new Intent(MainActivity.this, LearnActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

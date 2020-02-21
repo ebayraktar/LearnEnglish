@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -37,7 +36,6 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
     RadioGroup rgAnswers;
     RadioButton[] radioButtons;
     TextView tvDefinition, tvTranslation, tvIndex, tvPoint;
-    ImageView ivPrev, ivNext;
 
     @Override
     public void onBackPressed() {
@@ -45,15 +43,20 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         HeaderEvents(this);
 
-        prefManager = new PrefManager(this);
+        //
         rgAnswers = findViewById(R.id.rgAnswers);
+        tvDefinition = findViewById(R.id.tvDefinition);
+        tvTranslation = findViewById(R.id.tvTranslation);
+        tvIndex = findViewById(R.id.tvIndex);
+        tvPoint = findViewById(R.id.tvPoint);
+
+        //
         radioButtons = new RadioButton[]{
                 findViewById(R.id.rbA),
                 findViewById(R.id.rbB),
@@ -61,23 +64,13 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
                 findViewById(R.id.rbD),
                 findViewById(R.id.rbE)
         };
-        tvDefinition = findViewById(R.id.tvDefinition);
-        tvTranslation = findViewById(R.id.tvTranslation);
-        tvIndex = findViewById(R.id.tvIndex);
-        tvPoint = findViewById(R.id.tvPoint);
-        ivPrev = findViewById(R.id.ivPrev);
-        ivNext = findViewById(R.id.ivNext);
-
-
-        point = prefManager.getPoint();
-        total = prefManager.getTotalPoint();
-        currentIndex = 0;
+        prefManager = new PrefManager(this);
         definitionList = new ArrayList<>();
         translationList = new ArrayList<>();
         apiHelper = new APIHelper(this, this);
 
-        tvPoint.setText(point + "/" + total);
-        ivPrev.setOnClickListener(new View.OnClickListener() {
+        //EVENTS
+        findViewById(R.id.ivPrev).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (definitionList.size() < 2)
@@ -88,7 +81,7 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
                 setDefinitions(currentIndex, definitionList.size());
             }
         });
-        ivNext.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.ivNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (definitionList.size() < 2)
@@ -113,11 +106,20 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
                 } else {
                     showWrongDialog(checkedRB.getText().toString());
                 }
-
             }
         });
     }
 
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        point = prefManager.getPoint();
+        total = prefManager.getTotalPoint();
+        currentIndex = 0;
+
+        tvPoint.setText(point + "/" + total);
+    }
 
     @SuppressLint("SetTextI18n")
     private void nextQuestion() {
@@ -148,7 +150,6 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
                     }
                 })
                 .create().show();
-
     }
 
     private void setWords(String[] words) {
@@ -162,8 +163,8 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
     @SuppressLint("SetTextI18n")
     private void setDefinitions(int index, int totalIndex) {
         if (definitionList == null || definitionList.size() == 0) {
-            Log.d("TAG", "ERROR SET DEFINITON");
-            onErrorOccurred("ERROR SET DEFINITON");
+            Log.d("TAG", "ERROR SET DEFINITION");
+            onErrorOccurred("ERROR SET DEFINITION");
             return;
         }
         tvDefinition.setText(definitionList.get(index));
@@ -175,8 +176,8 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
     @SuppressLint("SetTextI18n")
     private void setDefinitions(String definition, int index, int totalIndex) {
         if (definitionList == null || definitionList.size() == 0) {
-            Log.d("TAG", "ERROR SET DEFINITON");
-            onErrorOccurred("ERROR SET DEFINITON");
+            Log.d("TAG", "ERROR SET DEFINITION");
+            onErrorOccurred("ERROR SET DEFINITION");
             return;
         }
         tvDefinition.setText(definition);
@@ -185,8 +186,8 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
 
     private void setTranslations(int index) {
         if (translationList == null || translationList.size() == 0) {
-            Log.d("TAG", "ERROR SET TRANSTALION");
-            onErrorOccurred("ERROR SET TRANSTALION");
+            Log.d("TAG", "ERROR SET TRANSLATION");
+            onErrorOccurred("ERROR SET TRANSLATION");
             return;
         }
         tvTranslation.setText(translationList.get(index));
@@ -194,8 +195,8 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
 
     private void setTranslations(String translation) {
         if (translationList == null || translationList.size() == 0) {
-            Log.d("TAG", "ERROR SET TRANSTALION");
-            onErrorOccurred("ERROR SET TRANSTALION");
+            Log.d("TAG", "ERROR SET TRANSLATION");
+            onErrorOccurred("ERROR SET TRANSLATION");
             return;
         }
         tvTranslation.setText(translation);
@@ -224,7 +225,7 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
                 this.correctWord = word;
                 setDefinitions(definitionList.get(currentIndex), currentIndex, definitionList.size());
             } else
-                Log.d("TAGI", "ERROR DEFINITONS NULL: ");
+                Log.d("TAGI", "ERROR DEFINITIONS NULL: ");
             if (exampleList != null && exampleList.size() > 0) {
                 Log.d("TAGI", "not null: ");
             } else
@@ -240,7 +241,7 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
             this.translationList = translatedString;
             setTranslations(translationList.get(currentIndex));
         } else
-            Log.d("TAGI", "ERROR TRANSLATEDSTRING NULL: ");
+            Log.d("TAGI", "ERROR TRANSLATED STRING NULL: ");
     }
 
     @Override
