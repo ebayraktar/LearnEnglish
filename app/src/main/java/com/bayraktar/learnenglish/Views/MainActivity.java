@@ -8,15 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import androidx.core.content.ContextCompat;
-
 import com.bayraktar.learnenglish.BaseActivity;
 import com.bayraktar.learnenglish.Constants;
 import com.bayraktar.learnenglish.Manager.LocaleManager;
 import com.bayraktar.learnenglish.Manager.PrefManager;
 import com.bayraktar.learnenglish.R;
-import com.bayraktar.learnenglish.Services.MyFirebaseService;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends BaseActivity {
     PrefManager prefManager;
@@ -43,7 +41,7 @@ public class MainActivity extends BaseActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.click_back_to_exit, Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 
@@ -72,7 +70,6 @@ public class MainActivity extends BaseActivity {
 
         ivLanguages = findViewById(R.id.ivLanguages);
 
-
         //EVENTS
         ivLanguages.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,20 +91,16 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.cvStart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, QuestionActivity.class));
+                startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         findViewById(R.id.cvStatistics).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent serviceIntent = new Intent(MainActivity.this, MyFirebaseService.class);
-                serviceIntent.putExtra("inputExtra", "input");
-                ContextCompat.startForegroundService(MainActivity.this, serviceIntent);
-
-                startActivity(new Intent(MainActivity.this, LearnActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                startActivity(new Intent(MainActivity.this, DiscoverActivity.class));
+//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                Snackbar.make(v, R.string.coming_soon, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
         findViewById(R.id.cvAbout).setOnClickListener(new View.OnClickListener() {

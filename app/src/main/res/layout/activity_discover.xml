@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Views.DiscoverActivity">
+
+    <include layout="@layout/activity_base" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/clHeader"
+            layout="@layout/header" />
+
+        <ImageView
+            android:id="@+id/ivWordIsApproved"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_none_approved_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clHeader" />
+
+        <ImageView
+            android:id="@+id/ivAddFav"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_un_favorite_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivWordIsApproved" />
+
+        <ImageView
+            android:id="@+id/ivWordImage"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_image_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clHeader" />
+
+        <ImageView
+            android:id="@+id/ivWordSound"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_sound_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivWordImage" />
+
+        <TextView
+            android:id="@+id/tvWordText"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:fontFamily="@font/archivo_black"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivWordSound"
+            app:layout_constraintTop_toBottomOf="@id/ivWordImage" />
+
+        <TextView
+            android:id="@+id/tvWordDefinitions"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:fontFamily="@font/archivo_black"
+            android:gravity="center_vertical"
+            android:text="@string/definitions"
+            android:textColor="@color/colorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWordText" />
+
+        <ImageView
+            android:id="@+id/ivDefinitionSound"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_sound_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWordDefinitions" />
+
+        <TextView
+            android:id="@+id/tvWordDefinition"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorSecondary"
+            app:layout_constraintEnd_toStartOf="@id/ivNextDefinition"
+            app:layout_constraintStart_toEndOf="@id/ivDefinitionSound"
+            app:layout_constraintTop_toBottomOf="@id/tvWordDefinitions" />
+
+        <ImageView
+            android:id="@+id/ivNextDefinition"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvWordDefinition"
+            app:layout_constraintTop_toBottomOf="@id/tvWordDefinitions" />
+
+        <TextView
+            android:id="@+id/tvWordExamples"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:fontFamily="@font/archivo_black"
+            android:gravity="center_vertical"
+            android:text="@string/examples"
+            android:textColor="@color/colorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWordDefinition" />
+
+        <ImageView
+            android:id="@+id/ivExampleSound"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_sound_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWordExamples" />
+
+        <TextView
+            android:id="@+id/tvWordExample"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorSecondary"
+            app:layout_constraintEnd_toStartOf="@id/ivNextExample"
+            app:layout_constraintStart_toEndOf="@id/ivExampleSound"
+            app:layout_constraintTop_toBottomOf="@id/tvWordExamples" />
+
+        <ImageView
+            android:id="@+id/ivNextExample"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvWordExample"
+            app:layout_constraintTop_toBottomOf="@id/tvWordExamples" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvNext"
+            android:layout_width="172dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="36dp"
+            app:cardBackgroundColor="@color/colorInfo"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
+                android:gravity="center"
+                android:text="@string/next"
+                android:textColor="@color/colorSecondary" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/av_splash_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fallbackRes="@color/colorPrimary"
+        app:lottie_fileName="719-loading.json"
+        app:lottie_loop="true" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

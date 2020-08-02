@@ -1,35 +1,94 @@
+
 package com.bayraktar.learnenglish.Models.Firebase;
 
-public class Word {
-    private String en;
-    private String tr;
-    private String sp;
-    private String parts_of_speech;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    public Word(String en, String tr, String sp, String parts_of_speech) {
-        this.en = en;
-        this.tr = tr;
-        this.sp = sp;
-        this.parts_of_speech = parts_of_speech;
-    }
+public class Word {
+    String wordId;
+    private Double dispersion;
+    private Double frequency;
+    private List<String> images = null;
+    private Boolean isDeleted;
+    private Boolean isLocked;
+    private List<Language> language = null;
+    private String partOfSpeechId;
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Word() {
     }
 
-    public String getEn() {
-        return en;
+    public String getWordId() {
+        return wordId;
     }
 
-    public String getTr() {
-        return tr;
+    public void setWordId(String wordId) {
+        this.wordId = wordId;
     }
 
-    public String getSp() {
-        return sp;
+    public Double getDispersion() {
+        return dispersion;
     }
 
-    public String getParts_of_speech() {
-        return parts_of_speech;
+    public void setDispersion(Double dispersion) {
+        this.dispersion = dispersion;
+    }
+
+    public Double getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Double frequency) {
+        this.frequency = frequency;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public Boolean getIsLocked() {
+        return isLocked;
+    }
+
+    public void setIsLocked(Boolean isLocked) {
+        this.isLocked = isLocked;
+    }
+
+    public List<Language> getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(List<Language> language) {
+        this.language = language;
+    }
+
+    public String getPartOfSpeechId() {
+        return partOfSpeechId;
+    }
+
+    public void setPartOfSpeechId(String partOfSpeechId) {
+        this.partOfSpeechId = partOfSpeechId;
+    }
+
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

@@ -8,6 +8,13 @@ public interface IRandomWords {
     @GET("word")
     Call<String[]> getRandomWords(@Query("key") String my_api_key, @Query("number") int number_of_words);
 
+    @GET("word")
+    Call<String[]> getRandomWords(@Query("number") int number_of_words);
+
+    @GET("all")
+    Call<String[]> getAllRandomWords();
+
+
     @GET("key")
     Call<String> getKey();
 }

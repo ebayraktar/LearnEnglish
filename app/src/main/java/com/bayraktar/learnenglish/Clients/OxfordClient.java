@@ -15,7 +15,6 @@ public class OxfordClient {
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(new OkHttpClient())
                     .build();
-            return retrofit;
         }
         return retrofit;
     }

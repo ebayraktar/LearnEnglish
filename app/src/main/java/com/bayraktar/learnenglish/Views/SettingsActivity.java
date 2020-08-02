@@ -57,15 +57,11 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                assert data != null;
-                int position = data.getIntExtra("result", -1);
-                Toast.makeText(this, "DATA" + position, Toast.LENGTH_SHORT).show();
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "DATA CANCELED", Toast.LENGTH_SHORT).show();
-            }
-
+        //                Toast.makeText(this, "DATA CANCELED", Toast.LENGTH_SHORT).show();
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            assert data != null;
+            int position = data.getIntExtra("result", -1);
+//                Toast.makeText(this, "DATA" + position, Toast.LENGTH_SHORT).show();
         }
     }
 

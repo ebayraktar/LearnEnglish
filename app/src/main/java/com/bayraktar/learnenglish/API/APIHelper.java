@@ -48,13 +48,13 @@ public class APIHelper implements IAPIDataChanged {
     }
 
     private void Initialization() {
-        if (TextUtils.isEmpty(RANDOMWORDS_KEY)) {
-            RandomKeyTask task = new RandomKeyTask(this);
-            task.execute();
-        } else {
+//        if (TextUtils.isEmpty(RANDOMWORDS_KEY)) {
+//            RandomKeyTask task = new RandomKeyTask(this);
+//            task.execute();
+//        } else {
             APIHelper.RandomWordsTask task = new APIHelper.RandomWordsTask(this);
             task.execute(RANDOMWORDS_KEY);
-        }
+//        }
     }
 
     private void dictionary(final String text) {
@@ -149,7 +149,7 @@ public class APIHelper implements IAPIDataChanged {
 
     private String[] getRandomWordsExecute(String api_key) throws IOException {
         IRandomWords randomWordsService = RandomWordsClient.getInstance().getRandomWordsService();
-        Call<String[]> randomWordArray = randomWordsService.getRandomWords(api_key, 5);
+        Call<String[]> randomWordArray = randomWordsService.getRandomWords(5);
         Response<String[]> response = randomWordArray.execute();
         return response.body();
     }

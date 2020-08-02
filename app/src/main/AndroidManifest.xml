@@ -15,12 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".Views.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,13 +30,19 @@
         <activity android:name=".Views.SettingsActivity" />
         <activity android:name=".Views.ChangeBGActivity" />
         <activity android:name=".Views.AboutActivity" />
-        <activity android:name=".Views.LearnActivity" />
+        <activity android:name=".Views.DiscoverActivity" />
+        <activity android:name=".Views.HomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <service android:name=".Services.MyFirebaseService" />
+        <service
+            android:name=".Services.FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

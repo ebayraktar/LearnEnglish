@@ -1,6 +1,7 @@
 package com.bayraktar.learnenglish.Views;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,12 +17,18 @@ import java.util.Random;
 
 public class SplashActivity extends Activity {
     private FirebaseAnalytics mFirebaseAnalytics;
+    NotificationManager notificationManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (getIntent() != null && getIntent().hasExtra(getPackageName())) {
+            int channelID = getIntent().getIntExtra(getPackageName(), 1);
+            notificationManager.cancel(channelID); //closes notification
+        }
 
         logEvent();
 

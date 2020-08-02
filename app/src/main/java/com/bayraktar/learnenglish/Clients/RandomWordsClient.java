@@ -21,7 +21,6 @@ public class RandomWordsClient {
         if (instance == null) {
             instance = new RandomWordsClient();
         }
-
         return instance;
     }
 
@@ -53,22 +52,16 @@ public class RandomWordsClient {
     }
 
 
-//
-//    public static RandomWordsClient instance = null;
-//    private static Retrofit retrofit = null;
 
-//
-//    private IRandomWords randomWords;
-//
-//    public static Retrofit getClient() {
-//        if (retrofit == null) {
-//            retrofit = new Retrofit.Builder()
-//                    .baseUrl(Base_Url)
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .client(new OkHttpClient())
-//                    .build();
-//            return retrofit;
-//        }
-//        return retrofit;
-//    }
+    private static Retrofit retrofit = null;
+    public static Retrofit getClient() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(new OkHttpClient())
+                    .build();
+        }
+        return retrofit;
+    }
 }

@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 
-    <include layout="@layout/haader" />
+    <include layout="@layout/background" />
 
     <ImageView
         android:layout_width="match_parent"
