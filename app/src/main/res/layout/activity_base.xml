@@ -14,7 +14,7 @@
         android:contentDescription="@string/todo"
         android:src="@android:color/black" />
 
-    <include layout="@layout/footer" />
+    <include layout="@layout/footer" android:visibility="invisible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

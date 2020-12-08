@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 
 import com.bayraktar.learnenglish.BaseActivity;
 import com.bayraktar.learnenglish.R;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class AboutActivity extends BaseActivity {
     @Override
@@ -30,25 +32,25 @@ public class AboutActivity extends BaseActivity {
         findViewById(R.id.cvWebsite).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Snackbar.make(v, R.string.coming_soon, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
         findViewById(R.id.cvFacebook).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Snackbar.make(v, R.string.coming_soon, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
         findViewById(R.id.cvTwitter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Snackbar.make(v, R.string.coming_soon, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
         findViewById(R.id.cvYoutube).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Snackbar.make(v, R.string.coming_soon, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
         findViewById(R.id.cvBack).setOnClickListener(new View.OnClickListener() {
