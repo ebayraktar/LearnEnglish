@@ -75,4 +75,7 @@
     <string name="unapproved_word">You unapproved this word</string>
     <string name="none_approved_word">You none approved this word</string>
     <string name="content_not_available">Content not available</string>
+    <string name="dispersion">Dispersion</string>
+    <string name="frequency">Frequency</string>
+    <string name="example">EXAMPLE</string>
 </resources>

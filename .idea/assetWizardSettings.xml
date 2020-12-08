@@ -137,7 +137,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/D:/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/terrain/baseline_terrain_24.xml" />
+                                      <entry key="url" value="jar:file:/D:/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/keyboard_arrow_down/baseline_keyboard_arrow_down_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -147,8 +147,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="00aed4" />
-                            <entry key="outputName" value="ic_baseline_terrain_24" />
+                            <entry key="outputName" value="ic_baseline_keyboard_arrow_down_24" />
                             <entry key="sourceFile" value="C:\Users\emreb\Downloads\save.svg" />
                           </map>
                         </option>

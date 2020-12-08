@@ -40,7 +40,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.cvFavorites:
+                startActivity(new Intent(HomeActivity.this, FavoritesActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;
             case R.id.cvTop500:
+                startActivity(new Intent(HomeActivity.this, SlideWordsActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;
             case R.id.cvTop1000:
             case R.id.cvProgress:
                 Snackbar.make(v, R.string.coming_soon, BaseTransientBottomBar.LENGTH_SHORT).show();

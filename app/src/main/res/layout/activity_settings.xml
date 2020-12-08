@@ -48,26 +48,26 @@
                 android:layout_height="1dp"
                 android:background="@android:color/black" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvShowIntro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/colorPrimaryDark">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/cvShowIntro"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardBackgroundColor="@color/colorPrimaryDark">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/archivo_black"
-                    android:padding="13dp"
-                    android:text="@string/show_intro_next_launch"
-                    android:textColor="@color/colorAccent" />
-            </androidx.cardview.widget.CardView>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:fontFamily="@font/archivo_black"-->
+<!--                    android:padding="13dp"-->
+<!--                    android:text="@string/show_intro_next_launch"-->
+<!--                    android:textColor="@color/colorAccent" />-->
+<!--            </androidx.cardview.widget.CardView>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/black" />
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:background="@android:color/black" />-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvBack"

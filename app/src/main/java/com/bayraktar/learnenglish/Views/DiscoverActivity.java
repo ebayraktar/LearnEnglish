@@ -157,6 +157,12 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
         super.onSaveInstanceState(outState);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        myTTS.shutdown();
+    }
+
     void initialize() {
         myTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override

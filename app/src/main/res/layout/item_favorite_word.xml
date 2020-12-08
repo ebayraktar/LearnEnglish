@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    app:cardBackgroundColor="@color/colorSplash">
+
+    <com.ramotion.foldingcell.FoldingCell
+        android:id="@+id/folding_cell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/cell_content_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorYellow"
+            android:visibility="gone">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="240dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    app:cardBackgroundColor="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvTitleWord"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/archivo_black"
+                        android:gravity="center"
+                        android:text="@string/todo"
+                        android:textColor="@color/colorSecondary" />
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/ivWordImage"
+                    android:layout_width="64dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_image_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cvTitle" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clContentContent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ivWordIsApproved"
+                    app:layout_constraintStart_toEndOf="@id/ivWordImage"
+                    app:layout_constraintTop_toBottomOf="@id/cvTitle">
+
+                    <TextView
+                        android:id="@+id/tvDefinitions"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:text="@string/definition"
+                        app:layout_constraintBottom_toTopOf="@id/tvExamples"
+                        app:layout_constraintEnd_toStartOf="@id/ivNextDefinition"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivNextDefinition"
+                        android:layout_width="24dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                        app:layout_constraintBottom_toTopOf="@id/ivNextExample"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvExamples"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:text="@string/example"
+                        app:layout_constraintBottom_toTopOf="@id/cvDefinitions"
+                        app:layout_constraintEnd_toStartOf="@id/ivNextExample"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvDefinitions" />
+
+                    <ImageView
+                        android:id="@+id/ivNextExample"
+                        android:layout_width="24dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="8dp"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                        app:layout_constraintBottom_toTopOf="@id/cvDefinitions"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ivNextDefinition" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvDefinitions"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_margin="8dp"
+                        app:cardBackgroundColor="@color/colorSuccess"
+                        app:cardCornerRadius="@dimen/fab_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cvExamples"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Body2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/archivo_black"
+                            android:gravity="center"
+                            android:text="@string/definitions"
+                            android:textColor="@color/colorSecondary" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvExamples"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_margin="8dp"
+                        app:cardBackgroundColor="@color/colorSuccess"
+                        app:cardCornerRadius="@dimen/fab_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/cvDefinitions">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Body2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/archivo_black"
+                            android:gravity="center"
+                            android:text="@string/examples"
+                            android:textColor="@color/colorSecondary" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/ivWordIsApproved"
+                    android:layout_width="36dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_none_approved_24"
+                    app:layout_constraintBottom_toTopOf="@id/ivAddFav"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cvTitle" />
+
+                <ImageView
+                    android:id="@+id/ivAddFav"
+                    android:layout_width="36dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_un_favorite_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivWordIsApproved" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/cell_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="96dp">
+
+                <ImageView
+                    android:id="@+id/vTitle"
+                    android:layout_width="36dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                    android:tint="@color/colorSecondary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="8dp"
+                    app:layout_constraintEnd_toStartOf="@id/ivWordSound"
+                    app:layout_constraintStart_toEndOf="@id/vTitle">
+
+                    <TextView
+                        android:id="@+id/tvWordText"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/archivo_black"
+                        android:gravity="center_vertical"
+                        android:text="@string/todo"
+                        android:textColor="@color/colorSecondary"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvWordText">
+
+                        <TextView
+                            android:id="@+id/tvDispersionText"
+                            style="@style/TextAppearance.AppCompat.Body2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/dispersion"
+                            android:textColor="@color/colorSecondary"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvDispersionValue"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:gravity="center_vertical"
+                            android:text="0"
+                            android:textColor="@color/colorSecondary"
+                            app:layout_constraintEnd_toStartOf="@id/tvFrequencyText"
+                            app:layout_constraintStart_toEndOf="@id/tvDispersionText" />
+
+                        <TextView
+                            android:id="@+id/tvFrequencyText"
+                            style="@style/TextAppearance.AppCompat.Body2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/frequency"
+                            android:textColor="@color/colorSecondary"
+                            app:layout_constraintStart_toEndOf="@id/tvDispersionValue" />
+
+                        <TextView
+                            android:id="@+id/tvFrequencyValue"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:gravity="center_vertical"
+                            android:text="0"
+                            android:textColor="@color/colorSecondary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tvFrequencyText" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/ivWordSound"
+                    android:layout_width="48dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_sound_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+    </com.ramotion.foldingcell.FoldingCell>
+
+</androidx.cardview.widget.CardView>
