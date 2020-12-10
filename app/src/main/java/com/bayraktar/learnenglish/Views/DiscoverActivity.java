@@ -110,6 +110,7 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
         ivNextDefinition.setOnClickListener(this);
 
         findViewById(R.id.cvNext).setOnClickListener(this);
+        findViewById(R.id.cvShowTranslate).setOnClickListener(this);
 
         if (savedInstanceState != null) {
             String wordJson = savedInstanceState.getString(WORD_KEY);
@@ -279,7 +280,7 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
         return isValid;
     }
 
-    String setFav(Boolean isFav) {
+    String setFav(boolean isFav) {
         String message;
         if (isFav) {
             ivAddFav.setImageResource(R.drawable.ic_favorite_24);
@@ -289,8 +290,10 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
             message = getString(R.string.did_not_like_word);
         }
         currentFav = isFav;
-        wordInformation.setFav(currentFav);
-        sendUserWordInformation();
+        if (wordInformation != null) {
+            wordInformation.setFav(currentFav);
+            sendUserWordInformation();
+        }
         //wordInformation
         return message;
     }
@@ -355,78 +358,68 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         String utteranceID;
         ImageView view;
-        switch (v.getId()) {
-            case R.id.ivWordIsApproved:
-                String snackApprovedMessage = setApproved(++isApproved);
-                Snackbar.make(clContent, snackApprovedMessage, Snackbar.LENGTH_SHORT).setAction(getString(R.string.undo), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        setApproved(--isApproved);
-                    }
-                }).show();
-                break;
-            case R.id.ivAddFav:
-                String snackFavMessage = setFav(!currentFav);
-                Snackbar.make(clContent, snackFavMessage, Snackbar.LENGTH_SHORT).setAction(getString(R.string.undo), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        setFav(!currentFav);
-                    }
-                }).show();
-                break;
-            case R.id.cvNext:
-                newWord();
-                break;
-            case R.id.ivWordSound:
-                view = (ImageView) v;
-                onVolumeUp(view, true);
-                utteranceID = String.valueOf(R.id.ivWordSound);
-                ConvertTextToSpeech(tvWordText.getText().toString(), utteranceID);
-                break;
-            case R.id.ivDefinitionSound:
-                view = (ImageView) v;
-                onVolumeUp(view, true);
-                utteranceID = String.valueOf(R.id.ivDefinitionSound);
-                ConvertTextToSpeech(tvWordDefinition.getText().toString(), utteranceID);
-                break;
-            case R.id.ivExampleSound:
-                view = (ImageView) v;
-                onVolumeUp(view, true);
-                utteranceID = String.valueOf(R.id.ivExampleSound);
-                ConvertTextToSpeech(tvWordExample.getText().toString(), utteranceID);
-                break;
-            case R.id.ivNextDefinition:
-                setDefinition(currentWord, ++definitionsCurrentIndex);
-                break;
-            case R.id.ivNextExample:
-                setExample(currentWord, ++examplesCurrentIndex);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + v.getId());
+        int id = v.getId();
+        if (id == R.id.ivWordIsApproved) {
+            String snackApprovedMessage = setApproved(++isApproved);
+            Snackbar.make(clContent, snackApprovedMessage, Snackbar.LENGTH_SHORT).setAction(getString(R.string.undo), new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setApproved(--isApproved);
+                }
+            }).show();
+        } else if (id == R.id.ivAddFav) {
+            String snackFavMessage = setFav(!currentFav);
+            Snackbar.make(clContent, snackFavMessage, Snackbar.LENGTH_SHORT).setAction(getString(R.string.undo), new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setFav(!currentFav);
+                }
+            }).show();
+        } else if (id == R.id.cvNext) {
+            newWord();
+        } else if (id == R.id.cvShowTranslate) {
+            Toast.makeText(this, currentWord.getLanguage().get(1).getCode(), Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.ivWordSound) {
+            view = (ImageView) v;
+            onVolumeUp(view, true);
+            utteranceID = String.valueOf(R.id.ivWordSound);
+            ConvertTextToSpeech(tvWordText.getText().toString(), utteranceID);
+        } else if (id == R.id.ivDefinitionSound) {
+            view = (ImageView) v;
+            onVolumeUp(view, true);
+            utteranceID = String.valueOf(R.id.ivDefinitionSound);
+            ConvertTextToSpeech(tvWordDefinition.getText().toString(), utteranceID);
+        } else if (id == R.id.ivExampleSound) {
+            view = (ImageView) v;
+            onVolumeUp(view, true);
+            utteranceID = String.valueOf(R.id.ivExampleSound);
+            ConvertTextToSpeech(tvWordExample.getText().toString(), utteranceID);
+        } else if (id == R.id.ivNextDefinition) {
+            setDefinition(currentWord, ++definitionsCurrentIndex);
+        } else if (id == R.id.ivNextExample) {
+            setExample(currentWord, ++examplesCurrentIndex);
+        } else {
+            throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
 
     @Override
     public boolean onLongClick(View v) {
-        switch (v.getId()) {
-            case R.id.ivWordIsApproved:
-                Message approvedMessage = new Message();
-                approvedMessage.icon = R.drawable.ic_info_accent_24;
-                approvedMessage.title = getString(R.string.approved_info_title);
-                approvedMessage.message = getString(R.string.approved_info_message);
-                approvedMessage.negativeButton = getString(R.string.approved_info_positive);
-                ShowAlertDialog(DiscoverActivity.this, approvedMessage, null);
-                break;
-            case R.id.ivAddFav:
-                Message favMessage = new Message();
-                favMessage.icon = R.drawable.ic_info_accent_24;
-                favMessage.title = "getString(R.string.approved_info_title)";
-                favMessage.message = "getString(R.string.approved_info_message)";
-                favMessage.negativeButton = getString(R.string.approved_info_positive);
-                ShowAlertDialog(DiscoverActivity.this, favMessage, null);
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if (id == R.id.ivWordIsApproved) {
+            Message approvedMessage = new Message();
+            approvedMessage.icon = R.drawable.ic_info_accent_24;
+            approvedMessage.title = getString(R.string.approved_info_title);
+            approvedMessage.message = getString(R.string.approved_info_message);
+            approvedMessage.negativeButton = getString(R.string.approved_info_positive);
+            ShowAlertDialog(DiscoverActivity.this, approvedMessage, null);
+        } else if (id == R.id.ivAddFav) {
+            Message favMessage = new Message();
+            favMessage.icon = R.drawable.ic_info_accent_24;
+            favMessage.title = "getString(R.string.approved_info_title)";
+            favMessage.message = "getString(R.string.approved_info_message)";
+            favMessage.negativeButton = getString(R.string.approved_info_positive);
+            ShowAlertDialog(DiscoverActivity.this, favMessage, null);
         }
         return false;
     }

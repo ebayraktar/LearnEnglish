@@ -265,13 +265,13 @@ public class APIHelper implements IAPIDataChanged {
 
     //  RANDOM WORDS TASK
     private static class RandomWordsTask extends AsyncTask<String, Integer, String[]> {
-        private WeakReference<APIHelper> activityWeakReference;
+        private final WeakReference<APIHelper> activityWeakReference;
+        ProgressDialog dialog;
 
         RandomWordsTask(APIHelper helper) {
             activityWeakReference = new WeakReference<>(helper);
         }
 
-        ProgressDialog dialog;
 
         @Override
         protected void onPreExecute() {
