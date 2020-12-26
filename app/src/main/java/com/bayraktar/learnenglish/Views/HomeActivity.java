@@ -17,19 +17,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        HideBackButton(this, false);
+        HideBackButton( false);
         findViewById(R.id.cvLearn).setOnClickListener(this);
         findViewById(R.id.cvFavorites).setOnClickListener(this);
         findViewById(R.id.cvTop500).setOnClickListener(this);
         findViewById(R.id.cvTop1000).setOnClickListener(this);
         findViewById(R.id.cvProgress).setOnClickListener(this);
         findViewById(R.id.cvSettings).setOnClickListener(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        HeaderEvents(this);
     }
 
     @Override

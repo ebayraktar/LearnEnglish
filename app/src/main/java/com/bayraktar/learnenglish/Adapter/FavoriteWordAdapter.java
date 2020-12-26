@@ -2,6 +2,7 @@ package com.bayraktar.learnenglish.Adapter;
 
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.google.gson.Gson;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class FavoriteWordAdapter extends RecyclerView.Adapter<FavoriteWordAdapter.ViewHolder> {
@@ -27,7 +29,6 @@ public class FavoriteWordAdapter extends RecyclerView.Adapter<FavoriteWordAdapte
     IFavoriteWordListener favoriteWordListener;
     int currentLang;
     TextToSpeech myTTS;
-
 
     public FavoriteWordAdapter(int currentLang, TextToSpeech myTTS, IFavoriteWordListener favoriteWordListener) {
         this.currentLang = currentLang;
@@ -45,6 +46,9 @@ public class FavoriteWordAdapter extends RecyclerView.Adapter<FavoriteWordAdapte
         this.currentLang = currentLang;
     }
 
+    public ViewHolder getViewHolder(int position) {
+        return null;
+    }
 
     @NonNull
     @Override
@@ -54,7 +58,7 @@ public class FavoriteWordAdapter extends RecyclerView.Adapter<FavoriteWordAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final Word word = wordList.get(position);
 
         holder.folding_cell.setOnClickListener(new View.OnClickListener() {
@@ -206,10 +210,10 @@ public class FavoriteWordAdapter extends RecyclerView.Adapter<FavoriteWordAdapte
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.ivWordIsApproved:
-                    favoriteWordListener.onApproveClick(getAdapterPosition());
+                    favoriteWordListener.onApproveClick(getAdapterPosition(), folding_cell);
                     break;
                 case R.id.ivAddFav:
-                    favoriteWordListener.onFavClick(getAdapterPosition());
+                    favoriteWordListener.onFavClick(getAdapterPosition(), folding_cell);
                     break;
                     /*
                 case R.id.ivNextDefinition:
@@ -232,9 +236,9 @@ public class FavoriteWordAdapter extends RecyclerView.Adapter<FavoriteWordAdapte
     }
 
     public interface IFavoriteWordListener {
-        void onFavClick(int position);
+        void onFavClick(int position, FoldingCell folding_cell);
 
-        void onApproveClick(int position);
+        void onApproveClick(int position, FoldingCell folding_cell);
 
         /*
                 void onDefinitionNextClick(int position);

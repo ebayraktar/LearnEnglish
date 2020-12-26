@@ -10,8 +10,8 @@ import com.bayraktar.learnenglish.Constants;
 import java.util.Locale;
 
 public class PrefManager {
-    private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
+    private final SharedPreferences pref;
+    private final SharedPreferences.Editor editor;
 
     // Shared preferences file name
     private static final String PREF_NAME = "_AppPref";
@@ -21,6 +21,7 @@ public class PrefManager {
     private static final String TOTAL_POINT = "_TotalPoint";
     private static final String BACKGROUND_POSITION = "_BackgroundPosition";
     private static final String SELECTED_LANGUAGE = "_SelectedLanguage";
+    private static final String DISCOVERED_INDEX = "_DiscoveredIndex";
 
     @SuppressLint("CommitPrefEdits")
     public PrefManager(Activity context) {
@@ -81,6 +82,16 @@ public class PrefManager {
             }
         }
         return pref.getInt(SELECTED_LANGUAGE, defaultItem);
+    }
+
+    public void setDiscoveredIndex(int index) {
+        editor.putInt(DISCOVERED_INDEX, index);
+        editor.commit();
+    }
+
+    public int getDiscoveredIndex() {
+        int defaultItem = 0;
+        return pref.getInt(DISCOVERED_INDEX, defaultItem);
     }
 
 

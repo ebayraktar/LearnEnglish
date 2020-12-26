@@ -47,7 +47,6 @@ public class QuestionActivity extends BaseActivity implements IAPIDataChanged {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-        HeaderEvents(this);
 
         //
         rgAnswers = findViewById(R.id.rgAnswers);

@@ -5,6 +5,7 @@ import android.net.DnsResolver;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bayraktar.learnenglish.API.FirebaseService;
 import com.bayraktar.learnenglish.BaseActivity;
+import com.bayraktar.learnenglish.Constants;
 import com.bayraktar.learnenglish.Manager.PrefManager;
 import com.bayraktar.learnenglish.Models.Firebase.UserWordInformation;
 import com.bayraktar.learnenglish.Models.Firebase.Word;
@@ -28,6 +30,8 @@ import com.bayraktar.learnenglish.Models.MobileResult;
 import com.bayraktar.learnenglish.R;
 import com.bayraktar.learnenglish.ViewModels.DiscoverViewModel;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
@@ -69,7 +73,14 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
-        SetBackButton(this);
+
+        if (getIntent() != null) {
+            String wordStr = getIntent().getStringExtra(Constants.WORD_KEY);
+            if (!TextUtils.isEmpty(wordStr)) {
+                currentWord = new Gson().fromJson(wordStr, Word.class);
+            }
+        }
+
         prefManager = new PrefManager(DiscoverActivity.this);
         languagesCurrentIndex = prefManager.getLanguage();
         discoverViewModel = new ViewModelProvider(this).get(DiscoverViewModel.class);
@@ -126,7 +137,6 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onStart() {
         super.onStart();
-        HeaderEvents(this);
         setLoading();
     }
 
@@ -134,6 +144,8 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
     protected void onResume() {
         super.onResume();
         initialize();
+        if (currentWord != null)
+            setTitle(currentWord.getLanguage().get(0).getCode().toUpperCase());
     }
 
     void setLoading() {
@@ -327,15 +339,10 @@ public class DiscoverActivity extends BaseActivity implements View.OnClickListen
 
     void sendUserWordInformation() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            firebaseService.setUserWordInfo(getDeviceID(), wordInformation, new DnsResolver.Callback<MobileResult>() {
+            firebaseService.setUserWordInfo(getDeviceID(), wordInformation, new OnCompleteListener<Void>() {
                 @Override
-                public void onAnswer(@NonNull MobileResult answer, int rcode) {
-                    Log.d("TAG2", "onAnswer: " + answer.getMessage() + " " + rcode);
-                }
-
-                @Override
-                public void onError(@NonNull DnsResolver.DnsException error) {
-                    Log.d("TAG2", "onError: " + error.getMessage());
+                public void onComplete(@NonNull Task<Void> task) {
+                    Log.d("TAG", "onComplete: " + task.isSuccessful());
                 }
             });
         }

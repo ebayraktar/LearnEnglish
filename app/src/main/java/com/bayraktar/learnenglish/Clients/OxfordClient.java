@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OxfordClient {
     private static Retrofit retrofit = null;
-    private static String Base_Url = "https://od-api.oxforddictionaries.com:443/api/v2/entries/";
+    private static final String Base_Url = "https://od-api.oxforddictionaries.com:443/api/v2/entries/";
 
     public static Retrofit getClient() {
         if (retrofit == null) {

@@ -25,10 +25,10 @@ public class RandomWordsClient {
     }
 
     private RandomWordsClient() {
-        buildRetrofit(BASE_URL);
+        buildRetrofit();
     }
 
-    private void buildRetrofit(String url) {
+    private void buildRetrofit() {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -39,7 +39,7 @@ public class RandomWordsClient {
                 .readTimeout(30, TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(RandomWordsClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();

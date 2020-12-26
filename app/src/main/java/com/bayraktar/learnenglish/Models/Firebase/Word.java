@@ -12,6 +12,7 @@ public class Word {
     private List<String> images = null;
     private Boolean isDeleted;
     private Boolean isLocked;
+    private int index;
     private List<Language> language = null;
     private String partOfSpeechId;
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -65,6 +66,14 @@ public class Word {
 
     public void setIsLocked(Boolean isLocked) {
         this.isLocked = isLocked;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public List<Language> getLanguage() {

@@ -9,20 +9,24 @@ import com.bayraktar.learnenglish.R;
 import com.bumptech.glide.Glide;
 import com.huxq17.swipecardsview.BaseCardAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SlideCardAdapter extends BaseCardAdapter<Word> {
 
     private List<Word> modelList;
-    private int currentLang;
 
-    public SlideCardAdapter(List<Word> modelList, int currentLang) {
-        this.modelList = modelList;
-        this.currentLang = currentLang;
+    public SlideCardAdapter() {
+        modelList = new ArrayList<>();
     }
 
     public void setModelList(List<Word> modelList) {
         this.modelList = modelList;
+    }
+
+    @Override
+    public int getVisibleCardCount() {
+        return modelList.size();
     }
 
     @Override
@@ -45,7 +49,7 @@ public class SlideCardAdapter extends BaseCardAdapter<Word> {
         ImageView imageView = (ImageView) cardView.findViewById(R.id.imageViewCardItem);
         TextView textView = (TextView) cardView.findViewById(R.id.textView);
 
-        textView.setText(model.getLanguage().get(currentLang).getCode());
+        textView.setText(model.getLanguage().get(0).getCode());
 
         Glide.with(cardView)
                 .load(model.getImages().get(0))

@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,13 @@ public class BaseActivity extends AppCompatActivity {
     private AlertDialog alertDialog;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        HeaderEvents();
+        SetBackButton();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -34,28 +42,47 @@ public class BaseActivity extends AppCompatActivity {
                 Settings.Secure.ANDROID_ID);
     }
 
-    public void HeaderEvents(Activity activity) {
-        activity.findViewById(R.id.clRoot).setBackgroundResource(Constants.BACKGROUND_DRAWABLE);
+    public void HeaderEvents() {
+        if (Constants.BACKGROUND_DRAWABLE == -1)
+            return;
+        findViewById(R.id.clRoot).setBackgroundResource(Constants.BACKGROUND_DRAWABLE);
         String ID = getDeviceID();
         TextView tvID = findViewById(R.id.tvID);
         tvID.setText(ID);
     }
 
-    public void HideBackButton(Activity activity, boolean visibility) throws NullPointerException {
-        if (!visibility)
-            activity.findViewById(R.id.ivBack).setVisibility(View.INVISIBLE);
+    @Override
+    public void setTitle(int titleId) {
+        ((TextView) findViewById(R.id.tvTitle)).setText(titleId);
+        super.setTitle(titleId);
     }
 
-    public void SetBackButton(Activity activity) throws NullPointerException {
-        activity.findViewById(R.id.ivBack).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+    @Override
+    public void setTitle(CharSequence title) {
+        ((TextView) findViewById(R.id.tvTitle)).setText(title);
+        super.setTitle(title);
+    }
+
+    public void HideBackButton(boolean visibility) {
+        ImageView ivBack = findViewById(R.id.ivBack);
+        if (!visibility && ivBack != null)
+            ivBack.setVisibility(View.INVISIBLE);
+    }
+
+    public void SetBackButton() {
+        ImageView ivBack = findViewById(R.id.ivBack);
+        if (ivBack != null)
+            ivBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
     }
 
     public void ShowAlertDialog(final Activity activity, Message message, DialogInterface.OnClickListener listener) {
+        if (activity == null || message == null)
+            return;
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         builder.setTitle(message.title)
@@ -68,9 +95,9 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void ShowExitMessage(final Activity activity, Message message) {
-        if ((alertDialog != null && alertDialog.isShowing())
-                || activity == null
-                || message == null) {
+        if (activity == null || message == null)
+            return;
+        if (alertDialog != null && alertDialog.isShowing()) {
             return;
         }
         LayoutInflater inflater = getLayoutInflater();

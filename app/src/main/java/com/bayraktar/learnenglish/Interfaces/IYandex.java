@@ -15,8 +15,4 @@ public interface IYandex {
     Call<YandexModel> getYandex(@Field("key") String key,
                                 @Field("text") String[] text,
                                 @Field("lang") String lang);
-
-    void onTranslatedValue(List<String> value);
-
-    void onErrorOccurred(String value);
 }

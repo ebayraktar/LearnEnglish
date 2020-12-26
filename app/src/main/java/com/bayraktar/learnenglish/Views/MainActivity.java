@@ -121,7 +121,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        HeaderEvents(this);
 
         language = prefManager.getLanguage();
         ivLanguages.setImageResource(Constants.languagePositions[language]);

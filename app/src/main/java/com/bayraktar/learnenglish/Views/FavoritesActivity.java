@@ -24,8 +24,11 @@ import com.bayraktar.learnenglish.Models.Firebase.Word;
 import com.bayraktar.learnenglish.Models.MobileResult;
 import com.bayraktar.learnenglish.R;
 import com.bayraktar.learnenglish.ViewModels.FavoritesViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.ramotion.foldingcell.FoldingCell;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -48,8 +51,7 @@ public class FavoritesActivity extends BaseActivity implements FavoriteWordAdapt
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
-        HeaderEvents(this);
-        SetBackButton(this);
+
         prefManager = new PrefManager(this);
         languagesCurrentIndex = prefManager.getLanguage();
 
@@ -69,6 +71,12 @@ public class FavoritesActivity extends BaseActivity implements FavoriteWordAdapt
             }
         });
         initialize();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setTitle(R.string.favorites);
     }
 
     @Override
@@ -125,39 +133,33 @@ public class FavoritesActivity extends BaseActivity implements FavoriteWordAdapt
         av_splash_animation.animate().alpha(0.0f);
     }
 
-    void sendUserWordInformation(final int position, final UserWordInformation wordInformation) {
+    void sendUserWordInformation(final int position, final UserWordInformation wordInformation, final FoldingCell folding_cell) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            firebaseService.setUserWordInfo(getDeviceID(), wordInformation, new DnsResolver.Callback<MobileResult>() {
+            firebaseService.setUserWordInfo(getDeviceID(), wordInformation, new OnCompleteListener<Void>() {
                 @Override
-                public void onAnswer(@NonNull MobileResult answer, int rcode) {
-                    if (answer.getCode() == 0) {
-
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
                         favoriteWordAdapter.notifyItemChanged(position);
                     }
-                }
-
-                @Override
-                public void onError(@NonNull DnsResolver.DnsException error) {
-
                 }
             });
         }
     }
 
     @Override
-    public void onFavClick(int position) {
+    public void onFavClick(int position, FoldingCell folding_cell) {
         Word currentWord = wordList.get(position);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             String json = (String) currentWord.getAdditionalProperties().getOrDefault("userWordInformation", "");
             UserWordInformation userWordInformation = new Gson().fromJson(json, UserWordInformation.class);
             userWordInformation.setFav(!userWordInformation.isFav());
             currentWord.setAdditionalProperty("userWordInformation", new Gson().toJson(userWordInformation));
-            sendUserWordInformation(position, userWordInformation);
+            sendUserWordInformation(position, userWordInformation, folding_cell);
         }
     }
 
     @Override
-    public void onApproveClick(int position) {
+    public void onApproveClick(int position, FoldingCell folding_cell) {
         Word currentWord = wordList.get(position);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             String json = (String) currentWord.getAdditionalProperties().getOrDefault("userWordInformation", "");
@@ -167,7 +169,7 @@ public class FavoritesActivity extends BaseActivity implements FavoriteWordAdapt
             approved %= 3;
             userWordInformation.setApproved(approved);
             currentWord.setAdditionalProperty("userWordInformation", new Gson().toJson(userWordInformation));
-            sendUserWordInformation(position, userWordInformation);
+            sendUserWordInformation(position, userWordInformation, folding_cell);
         }
     }
 

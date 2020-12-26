@@ -194,6 +194,7 @@
             android:layout_marginBottom="36dp"
             app:cardBackgroundColor="@color/colorInfo"
             app:cardCornerRadius="12dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 

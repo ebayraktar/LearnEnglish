@@ -36,7 +36,6 @@ public class ChangeBGActivity extends BaseActivity implements ViewPager.OnPageCh
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_bg);
-        HeaderEvents(this);
 
         vpBackground = findViewById(R.id.vpBackground);
 
@@ -87,7 +86,6 @@ public class ChangeBGActivity extends BaseActivity implements ViewPager.OnPageCh
         prefManager.setBackgroundPosition(position);
         Constants.BACKGROUND_DRAWABLE = Constants.backgroundPositions[position];
         Constants.BACKGROUND_POSITION = position;
-        HeaderEvents(ChangeBGActivity.this);
     }
 
     @Override

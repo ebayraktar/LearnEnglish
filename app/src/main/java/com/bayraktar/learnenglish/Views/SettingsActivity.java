@@ -68,6 +68,5 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        HeaderEvents(this);
     }
 }

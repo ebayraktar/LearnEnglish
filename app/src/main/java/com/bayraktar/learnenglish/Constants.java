@@ -3,6 +3,7 @@ package com.bayraktar.learnenglish;
 import com.bayraktar.learnenglish.Manager.MessageManager;
 
 public class Constants {
+    public static final String WORD_KEY = "WORD_KEY" + 100;
     public static int BACKGROUND_DRAWABLE = -1;
     public static int BACKGROUND_POSITION = -1;
     public static MessageManager messageManager;

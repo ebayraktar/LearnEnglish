@@ -45,7 +45,8 @@
                     android:layout_height="64dp"
                     android:layout_marginHorizontal="@dimen/fab_margin"
                     android:layout_marginVertical="4dp"
-                    app:cardBackgroundColor="@color/colorYellow">
+                    app:cardBackgroundColor="@color/colorYellow"
+                    app:cardElevation="6dp">
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"
@@ -61,7 +62,8 @@
                     android:layout_height="64dp"
                     android:layout_marginHorizontal="@dimen/fab_margin"
                     android:layout_marginVertical="4dp"
-                    app:cardBackgroundColor="@color/colorYellow">
+                    app:cardBackgroundColor="@color/colorYellow"
+                    app:cardElevation="6dp">
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"
@@ -77,7 +79,8 @@
                     android:layout_height="64dp"
                     android:layout_marginHorizontal="@dimen/fab_margin"
                     android:layout_marginVertical="4dp"
-                    app:cardBackgroundColor="@color/colorYellow">
+                    app:cardBackgroundColor="@color/colorYellow"
+                    app:cardElevation="6dp">
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"
@@ -98,7 +101,8 @@
                     android:layout_height="64dp"
                     android:layout_marginHorizontal="@dimen/fab_margin"
                     android:layout_marginVertical="4dp"
-                    app:cardBackgroundColor="@color/colorYellow">
+                    app:cardBackgroundColor="@color/colorYellow"
+                    app:cardElevation="6dp">
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"
@@ -114,7 +118,8 @@
                     android:layout_height="64dp"
                     android:layout_marginHorizontal="@dimen/fab_margin"
                     android:layout_marginVertical="4dp"
-                    app:cardBackgroundColor="@color/colorYellow">
+                    app:cardBackgroundColor="@color/colorYellow"
+                    app:cardElevation="6dp">
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"
@@ -131,7 +136,8 @@
                     android:layout_height="64dp"
                     android:layout_marginHorizontal="@dimen/fab_margin"
                     android:layout_marginVertical="4dp"
-                    app:cardBackgroundColor="@color/colorYellow">
+                    app:cardBackgroundColor="@color/colorYellow"
+                    app:cardElevation="6dp">
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"

@@ -20,16 +20,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class YandexHelper {
+public class YandexHelper extends LiveData<YandexModel> {
 
-    private static String YANDEX_API_KEY = "trnsl.1.1.20191123T191655Z.c4e490008f275f7b.1e4729b73e064c7b91ff8beaabd17e713d0dfb73";
-    private Context context;
+    private static final String YANDEX_API_KEY = "trnsl.1.1.20191123T191655Z.c4e490008f275f7b.1e4729b73e064c7b91ff8beaabd17e713d0dfb73";
     final IYandex yandex;
 
     MutableLiveData<YandexModel> data;
 
-    public YandexHelper(Context context) {
-        this.context = context;
+    public YandexHelper() {
         yandex = YandexClient.getClient().create(IYandex.class);
         data = new MutableLiveData<>();
     }

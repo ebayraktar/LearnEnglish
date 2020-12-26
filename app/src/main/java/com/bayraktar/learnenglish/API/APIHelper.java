@@ -186,7 +186,7 @@ public class APIHelper implements IAPIDataChanged {
         try {
             String[] definitions = new String[definitionList.size()];
             definitionList.toArray(definitions);
-            translate(definitions);
+//            translate(definitions);
         } catch (Exception ex) {
             dataChanged.onErrorOccurred("Translate error: " + ex.getMessage());
         }

@@ -64,6 +64,5 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        HeaderEvents(this);
     }
 }
